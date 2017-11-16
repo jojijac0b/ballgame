@@ -1,0 +1,32 @@
+header {
+  text-align: center;
+  font-style: italic;
+  font-size: 20px;
+}
+
+.board {
+  width: 500px;
+  height: 300px;
+  background-color: #c5c5c5;
+  margin: auto;
+}
+
+.ball {
+  width: 30px;
+  height: 30px;
+  background-color: red;
+  border-radius: 100px;
+  position: relative;
+  left: 20px;
+  top: 20px;
+}
+
+.character {
+  width: 60px;
+  height: 60px;
+  border-radius: 100px;
+}
+
+.dashboard {
+  text-align: center;
+}
