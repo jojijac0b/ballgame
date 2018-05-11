@@ -144,7 +144,7 @@ class App extends Component {
     return (
       <div className='container'>
         <header>
-          <h3>Ball Game</h3>
+          <h3>Ball Guzzlers</h3>
           <span>Press start and use the arrow keys to collect as many balls as you can in 30 seconds</span>
         </header>
         <div>
