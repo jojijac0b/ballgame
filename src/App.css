@@ -1,7 +1,5 @@
 header {
   text-align: center;
-  font-style: italic;
-  font-size: 20px;
 }
 
 .board {
@@ -25,8 +23,13 @@ header {
   width: 60px;
   height: 60px;
   border-radius: 100px;
+  margin: .5%;
 }
 
 .dashboard {
   text-align: center;
+}
+
+.character-select {
+  margin-left: -100px;
 }

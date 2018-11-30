@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import john from './john.png';
-import sheff from './sheff.png';
+import Board from './components/Board';
+import Dashboard from './components/dashboard/Dashboard';
+import Header from './components/Header';
+import john from './pics/john.png';
+import sheff from './pics/sheff.png';
+import joji from './pics/joji.png';
 
 class App extends Component {
   state = {
@@ -102,15 +105,20 @@ class App extends Component {
   }
 
   changeCharacter = (e) => {
-    switch (e.target.src) {
-      case sheff:
+    switch (e.target.id) {
+      case 'sheff':
         this.setState({
           character: sheff,
         })
         break;
-      case john:
+      case 'john':
         this.setState({
           character: john,
+        })
+        break;
+      case 'joji':
+        this.setState({
+          character: joji,
         })
         break;
       default:
@@ -143,85 +151,25 @@ class App extends Component {
 
     return (
       <div className='container'>
-        <header>
-          <h3>Ball Game</h3>
-          <span>Press start and use the arrow keys to collect as many balls as you can in 30 seconds</span>
-        </header>
-        <div>
-          High Score: {highscore}
-        </div>
-        <div className='board'>
-          {cursor}
-          <div className='food' style={foodStyle}></div>
-        </div>
-        <div className='dashboard'>
-          <div className='score'>
-            <label>Score: {this.state.score}</label>
-          </div>
-          <div className='timer'>
-            <Timer reset={this.reset} score={this.state.score} toggleGameStarted={this.toggleGameStarted}/>
-          </div>
-          <div className='character-select'>
-             <p>Character Select</p>
-             <img onClick={this.changeCharacter} src={john} className='character'></img>
-             <img onClick={this.changeCharacter} src={sheff} className='character'></img>
-          </div>
-        </div>
+        <Header highscore={highscore}/>
+        <Board cursor={cursor} foodStyle={foodStyle}/>
+        <Dashboard
+          reset={this.reset}
+          score={this.state.score}
+          toggleGameStarted={this.toggleGameStarted}
+          changeCharacter={this.changeCharacter}
+          joji={joji}
+          john={john}
+          sheff={sheff}
+        />
+
       </div>
     );
   }
 }
 
-class Timer extends React.Component {
-  state = {
-    time: 0,
-  }
 
 
-  startGame = () => {
-    this.setState({
-      gameStarted: true,
-    })
-    this.props.toggleGameStarted();
-    window.start = setInterval(this.changeTime, 1000);
-    document.getElementById('start-button').disabled = 'true';
-  }
-
-
-  changeTime = () => {
-    if(this.state.time === 30){
-      clearInterval(window.start);
-      if(!(localStorage.getItem('score')) || this.props.score > JSON.parse(localStorage.getItem('score'))){
-        window.alert('New High Score!!! ' + this.props.score)
-        localStorage.setItem('score', JSON.stringify(this.props.score));
-      }
-      else {
-        window.alert('Times up. You scored ' + this.props.score);
-      }
-
-      this.props.reset();
-      this.props.toggleGameStarted();
-      this.setState({
-        time: 0,
-      })
-      document.getElementById('start-button').disabled = false;
-    }
-    else{
-      this.setState({
-        time: this.state.time+1,
-      })
-    }
-  }
-
-  render() {
-    return (
-      <div className='timer'>
-        <div>Time: {this.state.time}</div>
-        <button id='start-button' onClick={this.startGame}>Start</button>
-      </div>
-    )
-  }
-}
 
 
 
