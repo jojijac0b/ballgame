@@ -34,9 +34,10 @@ class Timer extends Component {
       n.queue=[];t=b.createElement(e);t.async=!0;
       t.src=v;s=b.getElementsByTagName(e)[0];
       s.parentNode.insertBefore(t,s)}(window, document,'script',
-      'https://connect.facebook.net/en_US/fbevents.js');      
-      
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '810492475960801');
       fbq('trackCustom', 'PlayGame', { score: this.props.score });
+      
 
       
       this.props.reset();
