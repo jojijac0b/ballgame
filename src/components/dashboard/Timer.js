@@ -27,8 +27,6 @@ class Timer extends Component {
         window.alert('Times up. You scored ' + this.props.score);
       }
       
-      fbq('trackCustom', 'PlayGame', {score: this.props.score});
-
       this.props.reset();
       this.props.toggleGameStarted();
       this.setState({
